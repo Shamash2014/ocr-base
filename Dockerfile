@@ -82,7 +82,7 @@ RUN git clone https://github.com/tesseract-ocr/tesseract.git \
   && cd .. \
   && rm -r tesseract
 
-RUN pip install flake8 pep8 tesserocr --upgrade
+RUN pip install Cython flake8 pep8 tesserocr --upgrade
 
 RUN mkdir -p /app
 WORKDIR /app
