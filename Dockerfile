@@ -1,5 +1,10 @@
 FROM python:3.6
 MAINTAINER Roman Myronov <warp.buddhist@gmail.com>
+LABEL version=0.0.1
+LABEL tesseract=4.0.0
+LABEL opencv=3.2.0
+LABEL imagemagick=true
+LABEL leptonica=1.7.4.1
 
 RUN apt-get update && \
         apt-get install -y \
@@ -32,9 +37,10 @@ RUN apt-get update && \
         libjpeg62-turbo-dev \
         libtiff5-dev \
         zlib1g-dev \
+        imagemagick \
+        libmagickwand-dev \
+        cython \
         libpq-dev
-
-RUN pip install numpy scikit-image
 
 WORKDIR /
 RUN wget https://github.com/Itseez/opencv/archive/3.2.0.zip \
@@ -82,7 +88,6 @@ RUN git clone https://github.com/tesseract-ocr/tesseract.git \
   && cd .. \
   && rm -r tesseract
 
-RUN pip install Cython flake8 pep8 tesserocr --upgrade
-
 RUN mkdir -p /app
 WORKDIR /app
+CMD ["python", "--version"]
